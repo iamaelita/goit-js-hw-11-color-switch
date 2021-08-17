@@ -1,0 +1,86 @@
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #000;
+  transition: background-color 2000ms linear;
+}
+
+button {
+  opacity: 0;
+  margin: 50px;
+  width: calc(10vw + 3px);
+  height: calc(10vw + 6px);
+  background-image: linear-gradient(90deg, #00ff15 0%, #ff00bf 49%, #4f8bfc 80%, #00ff15 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+  animation: slidebg 4s linear infinite;
+  transition: opacity 1500ms linear, transform 500ms ease, filter 1500ms ease;
+
+  &[data-action='start'] {
+    color: #00ff15;
+    font-size: 16px;
+
+    &:hover:not(:disabled) {
+      transform: rotate(360deg) scale(1.2);
+    }
+
+    &:disabled {
+      animation-duration: 0s;
+      filter: opacity(50%) brightness(0.4);
+      cursor: auto;
+    }
+  }
+
+  &[data-action='stop'] {
+    color: #b40606;
+    background-image: linear-gradient(90deg, #580101 0%, #b40606 49%, #ff0606 80%, #580101 100%);
+    animation-duration: 0s;
+
+    &:hover:not(:disabled) {
+      transform: scale(1.2);
+    }
+
+    &:disabled {
+      animation-duration: 0s;
+      filter: opacity(50%);
+      cursor: auto;
+    }
+  }
+}
+
+button[data-action='start']:after {
+  content: "Let's make some magic!";
+  padding: 16px;
+  width: 10vw;
+  height: calc(10vw - 4px);
+  background-color: #000;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+button[data-action='stop']:after {
+  content: 'STOP';
+  width: 10vw;
+  height: calc(10vw - 4px);
+  background-color: #000;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@keyframes slidebg {
+  to {
+    background-position: 20vw;
+  }
+}
